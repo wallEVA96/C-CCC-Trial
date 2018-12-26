@@ -11,13 +11,24 @@
  */
 
 #include <iostream>
+#include "./common.hpp"
 using namespace std;
 
-int main(int argc,char **argv){
+class temp{
+public:
+	temp();
+	temp(int n);
+	int p;
+	common t_c1;
+};
 
-	while(*argv++ != NULL)
-		std::cout << *argv << endl;
+temp::temp(int n):t_c1(n),p(n){
+	cout << " construct fun" << endl;
+}
 
+int main(int argc, char **argv){
+	temp t1(2);
+	
 return 0;
 }
 
