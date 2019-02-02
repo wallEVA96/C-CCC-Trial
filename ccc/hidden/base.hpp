@@ -6,10 +6,14 @@ class base
 public:
 	base();
 	~base();
+//	base(const base & temp);
 	int b;
+	char b_name;
 	static int f;
 	void bp();
-	virtual void prif();
+	virtual char prif(void);
+//protected:
+	int q;
 private:
 	int pri;
 };

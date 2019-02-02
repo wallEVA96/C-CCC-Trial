@@ -19,16 +19,22 @@ void base::bp()
 	std::cout << "qq" << std::endl;	
 }
 
-void base::prif()
+char base::prif()
 {
-	std::cout << "prif" << std::endl;
+	std::cout << "base prif" << std::endl;
+	return 0;
 }
 
 base::base()
 {
-	std::cout << "base construct" << std::endl;
+	q = 19;
+	std::cout << "base construct:" << q << std::endl;
+	std::cout << "base construct p:" << &q << std::endl;
 }
-
+//base::base(const base & temp){
+//	std::cout << "base class construct:" << q << std::endl;
+//}
+//
 base::~base()
 {
 	std::cout << "base deconstruct" << std::endl;

@@ -16,7 +16,7 @@ private:
 	int b;
 };
 
-Temp::Temp(int a):b{2121}{
+Temp::Temp(int a):b(2121){
 }
 
 void Temp::T_print(){

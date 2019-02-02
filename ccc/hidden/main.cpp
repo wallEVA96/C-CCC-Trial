@@ -26,53 +26,44 @@ class derive:public base, public grabase
 public:
 	int d;
 	std::string b;
+	int b_name;
 	int pri;
 	static int f;
-	virtual void prif(){
+	char prif(void){
 		pri = 666;
 		std::cout << "1112" << std::endl;
+		return 0;
 	}
 	void dep(){
 		std::cout << "dep" << std::endl;
 	}
 	derive(){
-		std::cout << "derive construct" << std::endl;
-	}
-	derive(const base& temp){
-		std::cout << "derive base construct" << std::endl;
+		q = 91;
+		std::cout << "derive construct:" << q << std::endl;
+		std::cout << "derive construct p :" << &q << std::endl;
 	}
 	~derive(){
 		std::cout << "derive deconstruct" << std::endl;
 	}
+	void hey(const base & temp){
+		//temp.q = 21;
+		//std::cout << "hey:"<< temp.q << std::endl;
+	}
 };
 int derive::f = 2;
 
+#define PAUSE fgetc(stdin);
 using namespace std;
 int main(int argc, char **argv)
 {
-	typedef void (*fun)();
-	derive ee;
-	
-	std::cout << &ee << std::endl;
-	std::cout << ((void*)(&ee)) << std::endl;
-	std::cout << (void*)(*(long*)(&ee)) << std::endl;
-	std::cout << (void*)(*(long*)*(long*)(&ee)) << std::endl;
-	std::cout << (void*)(**(long**)(&ee)) << std::endl;
-	std::cout << (void*)((fun**)(&ee)) << std::endl;
-	std::cout << (void*)(*(fun*)(&ee)) << std::endl;
-	std::cout << (void*)*(fun*)(*(fun*)(&ee)) << std::endl;
-	std::cout << (void*)**(fun**)(&ee) << std::endl;
-	std::cout << "fffun p " << **(int***)(&ee) << std::endl;
-	std::cout << "fffun p " << (*(int***)(&ee))[6] << std::endl;
+	derive dd;
+	dd.b_name = 'a';
+	dd.base::b_name = 'c';
+	cout << dd.b_name << endl;
+	cout << dd.base::b_name << endl;
 
-	std::cout << sizeof(long *) << std::endl;
-	std::cout << sizeof(long) << std::endl;
-
-	int ****p;
-
-	fun f_pi = ((fun)(**(long*****)&ee));
-	std::cout << "fun p " << (void*)f_pi << std::endl;
-	f_pi();
+	dd.prif();
+	dd.base::prif();
+	PAUSE
 	return 0;
 }
-
