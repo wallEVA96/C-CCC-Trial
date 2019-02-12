@@ -16,29 +16,41 @@ using namespace std;
 class numeric_cal{
 public:
 	int num;
+	int mun;
 	numeric_cal(int n);
 	numeric_cal& operator+();
 	numeric_cal& operator+(numeric_cal rv);
+	numeric_cal& operator%(int n);
 };
-numeric_cal::numeric_cal(int n):num(n){
+
+numeric_cal& numeric_cal::operator%(int n)
+{
+	num %= n; 	
+	return *this;
+}
+
+numeric_cal::numeric_cal(int n):num(n)
+{
 	cout << num << endl;
 }
 
-numeric_cal& numeric_cal::operator+(){
+numeric_cal& numeric_cal::operator+()
+{
 	cout << num << endl;
 }
 
-numeric_cal& numeric_cal::operator+(numeric_cal rv){
+numeric_cal& numeric_cal::operator+(numeric_cal rv)
+{
 	cout << num << endl;
 }
 
-int main(int argc,char **argv){
+int main(int argc,char **argv)
+{
 
-	class numeric_cal t1(1);
-	class numeric_cal t2(2);
+	numeric_cal t1(1);
+	numeric_cal t2(2);
 
-	t2+(+t1);
-
+	+t1;
 return 0;
 }
 

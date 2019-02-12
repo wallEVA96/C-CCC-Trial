@@ -28,7 +28,6 @@ public:
 		cout << "PrintA" << endl;	
 		return 0;
 	}
-
 	virtual ~shape()
 	{
 		cout << "~shape" << endl;
@@ -39,61 +38,55 @@ public:
 	}
 	int a;
 };
-
-class circle:public shape
-{
-public:
-	circle(double t_r):c_R(t_r)
-	{
-		cout << "circle" << endl;
-	}
-	~circle()
-	{
-		cout << "~circle" << endl;
-	}
-	double CalcArea()
-	{
-		cout << "circle area:" << 3.14*c_R*c_R << endl;
-		return 3.14*c_R*c_R;
-	}
-protected:
-	double c_R;
-};
-
-class rectangle:public shape
-{
-public:
-	rectangle(double t_h, double t_w):height(t_h), wideth(t_w)
-	{
-		cout << "rectangle" << endl;
-	}
-	~rectangle()
-	{
-		cout << "~rectangle" << endl;
-	}
-	double CalcArea()
-	{
-		cout << "rectangle area:" << height*wideth << endl;
-		return height*wideth;
-	}
-protected:
-	double height;
-	double wideth;
-};
-
-int fun(int a, int b, int c)
-{
-	cout << "fun print" << endl;
-return 0;
-}
-
-typedef double (*fun_p)();
-typedef double (shape::*vfp)();
-void test_fun()
-{
-	int a = 0;
-	cout << "test fun" << endl;
-}
+//
+//class circle:public shape
+//{
+//public:
+//	circle(double t_r):c_R(t_r)
+//	{
+//		cout << "circle" << endl;
+//	}
+//	~circle()
+//	{
+//		cout << "~circle" << endl;
+//	}
+//	double CalcArea()
+//	{
+//		cout << "circle area:" << 3.14*c_R*c_R << endl;
+//		return 3.14*c_R*c_R;
+//	}
+//protected:
+//	double c_R;
+//};
+//
+//class rectangle:public shape
+//{
+//public:
+//	rectangle(double t_h, double t_w):height(t_h), wideth(t_w)
+//	{
+//		cout << "rectangle" << endl;
+//	}
+//	~rectangle()
+//	{
+//		cout << "~rectangle" << endl;
+//	}
+//	double CalcArea()
+//	{
+//		cout << "rectangle area:" << height*wideth << endl;
+//		return height*wideth;
+//	}
+//protected:
+//	double height;
+//	double wideth;
+//};
+//
+//int fun(int a, int b, int c)
+//{
+//	cout << "fun print" << endl;
+//return 0;
+//}
+//
+typedef void (*fun_p)();
 
 int main(int argc, char **argv)
 {
@@ -103,14 +96,37 @@ int main(int argc, char **argv)
 	cout << *(fun_p**)s1 << endl;
 	cout << (void*)(*(fun_p**)s1)[0] << endl;
 	cout << (void*)(*(fun_p**)s1)[1] << endl;
+	cout << (void*)(*(fun_p**)s1)[2] << endl;
 	cout << "||||||||||||||||||||||||||||||||||||||||||||" << endl;
 	fun_p t_fp = NULL;
 	t_fp = (*(fun_p**)s1)[0];
 	t_fp();
 	t_fp = (*(fun_p**)s1)[1];
 	t_fp();
-	t_fp = (*(fun_p**)s1)[4];
-	t_fp();
+	//t_fp = (*(fun_p**)s1)[2];
+	//t_fp();
+	cout << "||||||||||||||||||||||||||||||||||||||||||||" << endl;
+	cout << (long*)s1 << endl;
+	cout << *(long**)s1 << endl;
+	cout << *(*(long***)s1) << endl;
+	cout << *(*(long***)s1+1) << endl;
+	((fun_p)(*(*(long**)s1)))();
+	((fun_p)(*(*(long**)s1+1)))();
+	cout << "||||||||||||||||||||||||||||||||||||||||||||" << endl;
+	cout << (long**)(*(long**)s1)[0] << endl;
+	cout << (long**)(*(long**)s1)[1] << endl;
+
+	cout << "||||||||||||||||||||||||||||||||||||||||||||" << endl;
+	shape *o1 = new shape;
+	shape *o2 = new shape;
+
+	cout << "function pointer is same" << endl;
+	cout << o1 << endl;
+	cout << (*(long***)o1)[0] << endl;
+	cout << (*(long***)o1)[1] << endl;
+	cout << o2 << endl;
+	cout << (*(long***)o2)[0] << endl;
+	cout << (*(long***)o2)[1] << endl;
 
 	return 0;
 }
